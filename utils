@@ -1,0 +1,58 @@
+/**
+ * 
+ * @param {String} x 
+ * @param {String} y 
+ * @returns 
+ */
+function applyXBehindY(x,y) {
+    let result = Array(256);
+
+    x = x.trim();
+    y = y.trim();
+
+
+    x.split("\n ").forEach((row, i) => {
+        row.split("").forEach((char, j) => {
+            if (y[i*16 + j] == '.') result[i*16 + j] = char;
+            else result[i*16 + j] = y[i*16 + j];
+        });
+    });
+
+    return result.join("");
+}
+
+let walle = `
+FFFFF66LF6666666
+FFFFFFFFFFFFFFFL
+F6612FFFFFFFFFFF
+FFFF66FFF6F6612F
+00000000FF6FFFFF
+6666666L00000000
+F6FFFFFF6666666L
+FF661FFFF6FFFFFF
+FFFFF622FF661FFF
+000000006FFFFF6F
+6666666L00000000
+6FFFFFFF6666666L
+F661FFFFF22FFFFF
+FFFFF66FFFF662FF
+0000000666FFFFFF
+FFFF666000000000`;
+
+console.log(applyXBehindY(walle, `
+LLL11...........
+LLLLLLL.LL1...1.
+LLLL00..LLL1.LL1
+LL0......0LL.LLL
+LLL......0LLLLL.
+LLL.......LLLL0.
+LLL.......0LLL..
+LLL2......0LLL..
+0LL1.......LLL1.
+0LL1.......LLL1.
+0LLL2......0LLL.
+.LLL1......0LL..
+.0LLL.......LL..
+.0LL........LL..
+................
+................`));
